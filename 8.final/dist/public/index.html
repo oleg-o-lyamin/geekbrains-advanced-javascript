@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>eShop</title>
+  <link rel='stylesheet' href="styles.css">
+</head>
+
+<body>
+  <div id='main'>
+    <div v-if="connectionError" class="error_container">Ошибка подключения к серверу.</div>
+    <div v-else style="display: flex;">
+      <div class="container left-container">
+        <search></search>
+        <div class="goods-container">
+          <div class="goods-list">
+            <goods-item v-for="good in filteredGoods" v-bind:good="good[1]"></goods-item>
+          </div>
+        </div>
+      </div>
+      <div class="container right-container">
+        <div class="cart-container active">
+          <div v-if="cart.size == 0">Корзина пуста</div>
+          <div v-else>
+            <div class="cart">
+              <cart-item v-for="cart_record in cart" v-bind:id="cart_record[0]" v-bind:quantity="cart_record[1]">
+              </cart-item>
+            </div>
+            <div class="total">
+              <h2>Итого: &#x0024;{{ value }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="build.js"></script>
+</body>
+
+</html>
